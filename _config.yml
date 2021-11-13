@@ -13,41 +13,40 @@ baseurl: ''
 lang: en
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Shanghai
+timezone: Europe/Madrid
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy                          # the main title
+title: V-Blog                          # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: Vicente Herrera's Blog  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
+  Vicente Herrera personal blog.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: ''
 
 github:
-  username: github_username             # change to your github username
+  username: vicenteherrera             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: vicen_herrera            # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@doamin.com             # change to your email address
+  name: Vicente Herrera
+  email: vicenteherrera@vicenteherrera.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/vicen_herrera      # change to your twitter homepage
+    - https://github.com/vicenteherrera       # change to your github homepage
+    - https://www.linkedin.com/in/vicenteherrera
     # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    # - https://www.facebook.com/vicenteherreracom
+    
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 
@@ -82,7 +81,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: v.png
 
 # boolean type, the global switch for ToC in posts.
 toc: true
@@ -103,7 +102,7 @@ kramdown:
     span:
       line_numbers: false
     block:
-      line_numbers: true
+      line_numbers: true 
       start_line: 1
 
 collections:
@@ -119,7 +118,7 @@ defaults:
       type: posts
     values:
       layout: post
-      comments: true    # Enable comments in posts.
+      comments: false    # Enable comments in posts.
       toc: true         # Display TOC column in posts.
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.
@@ -160,6 +159,7 @@ exclude:
   - gulpfile.js
   - node_modules
   - package.json
+  - Makefile
 
 jekyll-archives:
   enabled: [categories, tags]
