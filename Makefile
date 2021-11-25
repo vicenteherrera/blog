@@ -1,6 +1,6 @@
 .PHONY: prerequisites serve-watch build install test
 
-all: prerequisites serve-watch
+all: serve-drafts-watch
 
 prerequisites:
 	gem install bundler
@@ -10,7 +10,7 @@ serve-watch:
 	bundle exec jekyll serve --watch
 
 serve-drafts-watch:
-	bundle exec jekyll serve --watch --drafts
+	bundle exec jekyll serve --watch --drafts --unpublished --future
 
 test:
 	exit 0
