@@ -18,9 +18,9 @@ timezone: Europe/Madrid
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: V-Blog                          # the main title
+title: The Vlog                          # the main title
 
-tagline: Vicente Herrera's Blog  # it will display as the sub-title
+tagline: Vicente's Blog about security and personal stuff  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Vicente Herrera personal blog.

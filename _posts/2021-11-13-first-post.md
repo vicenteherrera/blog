@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 image.src: v.png
 ---
 
-It was about time for me to really have a blog. 
+It was about time for me to really have a blog. Or should I say Vlog? 
 
 <!--more-->
 
