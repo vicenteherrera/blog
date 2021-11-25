@@ -252,7 +252,7 @@ They are designed to empower red teams to manually emulate a specific threat act
 It is not a simple tool, and you will need specialized training to obtain the best out of it. Read more about it on [its documentation website](https://caldera.readthedocs.io/en/latest/){:target="_blank"}.
 
 
-### Threat Report ATT&CK Mapping (TRAM)
+### Threat Report ATT&CK Mapping
 
 **[Threat Report ATT&CK Mapping (TRAM)](https://github.com/center-for-threat-informed-defense/tram/){:target="_blank"}** is an open-source platform designed to automate the mapping of cyber threat intelligence reports to MITRE ATT&CK.
 
