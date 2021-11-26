@@ -11,6 +11,17 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 /* append your custom style below */
 
+/* Site title */
+
+#sidebar .site-title a {
+  color: #05656f;
+}
+html[mode=dark] {
+  #sidebar .site-title a {
+    color: #30959f;
+  }
+}
+
 /* Bold text */
 
 b, strong {
