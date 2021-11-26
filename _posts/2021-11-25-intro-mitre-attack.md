@@ -4,7 +4,6 @@ title:  "Introduction to MITRE ATT&CK"
 tags: MITRE ATT&CK D3FEND security cybersecurity cloud-native
 category: security
 excerpt_separator: <!--more-->
-image.src: /blog/images/mitre-attack.png
 date: 2021-11-25 19:34:00 +01
 image:
   src: /blog/images/mitre-attack-logo.png
@@ -41,6 +40,7 @@ sharing, and cyber resilience.
 We operate [FFRDCs](https://www.mitre.org/centers/we-operate-ffrdcs){:target="_blank"} —federally funded research and development centers. We also have
 an independent research program that explores new and expanded uses of technologies to solve
 our sponsors' problems. Our federal sponsors include the Department of Defense, the Federal Aviation Administration, the Internal Revenue Service, the Department of Veterans Affairs, the Department of Homeland Security, the Administrative Office of the U.S. Courts, the Centers for Medicare & Medicaid Services, and the National Institute of Standards and Technology.
+{:.quote}
 
 They have some interesting free publications like [Ten Strategies of a World-Class](https://www.mitre.org/publications/all/ten-strategies-of-a-world-class-cybersecurity-operations-center){:target="_blank"}, [Cybersecurity Operations Center](https://www.mitre.org/publications/all/ten-strategies-of-a-world-class-cybersecurity-operations-center){:target="_blank"}, and other works unrelated to cybersecurity like [AI Ethics discussion](https://govmatters.tv/tech-leadership-series-a-i-ethics/){:target="_blank"} or [Space Policy podcast](https://www.aiaa.org/events-learning/podcasts){:target="_blank"}.
 
@@ -168,6 +168,7 @@ The full list of _techniques_ is too varied to list here.  Visit the [MITRE ATT&
 The **[Exploitation for Privilege Escalation](https://attack.mitre.org/techniques/T1068/){:target="_blank"}** technique is described in _ATT&CK_ as:
 
 > Adversaries may exploit software vulnerabilities in an attempt to elevate privileges. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. Security constructs such as permission levels will often hinder access to information and use of certain techniques, so adversaries will likely need to perform privilege escalation to include use of software exploitation to circumvent those restrictions.
+{:.quote}
 
 It includes descriptions for 26 **procedures examples**, including:
 
@@ -207,6 +208,7 @@ You can export or import the layers' data in JSON format.
 The [Common Attack Pattern Enumeration and Classification (CAPEC)](https://capec.mitre.org/){:target="_blank"} is as they state:
 
 > A comprehensive dictionary of known patterns of attack employed by adversaries to exploit known weaknesses in cyber-enabled capabilities.
+{:.quote}
 
 It has many things in common with _ATT&CK_ but compiled from a different angle. In my opinion, it has more data that is more structured and with better references, but that is more difficult to navigate to learn from it “by hand” unfiltered. In my work on cybersecurity, I see _ATT&CK_ referenced many times (sometimes as a synonym for _MITRE_ itself in the cybersecurity world), but I’ve never seen _CAPEC_ referenced. See their article on the main differences between [here](https://capec.mitre.org/about/attack_comparison.html){:target="_blank"}.
 

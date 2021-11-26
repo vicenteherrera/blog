@@ -52,6 +52,17 @@ html[mode=dark] {
   }
 }
 
+/* Fix blockquote color */
+
+.quote {
+  color: #666;
+}
+html[mode=dark] {
+  .quote {
+    color:#888;
+  }
+}
+
 /* Dashed table */
 
 table.dashed-table tbody tr, table.dashed-table tbody td {
