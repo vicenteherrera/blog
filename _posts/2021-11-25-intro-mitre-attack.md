@@ -68,20 +68,20 @@ The official full name of the project is _MITRE ATT&CK®_, including the registe
 The **matrices** are a way to scope the knowledge base hierarchically depending on the field of application:
 
 <div class="table-wrapper">
-<table class="mitre-attack-matrices">
+<table class="dashed-table">
     <tbody>
         <tr>
             <td rowspan=12><a href="https://attack.mitre.org/matrices/enterprise/" target="_blank">Enterprise</a></td>
             <td colspan=3><a href="https://attack.mitre.org/matrices/enterprise/pre/" target="_blank">PRE</a> (preparatory techniques)</td>
         </tr>
         <tr>
-            <td><a href="https://attack.mitre.org/matrices/enterprise/windows/" target="_blank">Windows</a></td>
+            <td colspan=2><a href="https://attack.mitre.org/matrices/enterprise/windows/" target="_blank">Windows</a></td>
         </tr>
         <tr>
-            <td><a href="https://attack.mitre.org/matrices/enterprise/macos/" target="_blank">MacOS</a></td>
+            <td colspan=2><a href="https://attack.mitre.org/matrices/enterprise/macos/" target="_blank">MacOS</a></td>
         </tr>
         <tr>
-            <td><a href="https://attack.mitre.org/matrices/enterprise/linux/" target="_blank">Linux</a></td>
+            <td colspan=2><a href="https://attack.mitre.org/matrices/enterprise/linux/" target="_blank">Linux</a></td>
         </tr>
         <tr>
             <td rowspan=6><a href="https://attack.mitre.org/matrices/enterprise/cloud/" target="_blank">Cloud</a></td>
@@ -102,17 +102,17 @@ The **matrices** are a way to scope the knowledge base hierarchically depending 
             <td><a href="https://attack.mitre.org/matrices/enterprise/cloud/iaas/" target="_blank">IaaS</a> Infrastructure as a Service<br>(classic cloud provider infrastructure)</td>
         </tr>
         <tr>
-            <td><a href="https://attack.mitre.org/matrices/enterprise/network/" target="_blank">Network</a></td>
+            <td colspan=2><a href="https://attack.mitre.org/matrices/enterprise/network/" target="_blank">Network</a></td>
         </tr>
         <tr>
-            <td><a href="https://attack.mitre.org/matrices/enterprise/containers/" target="_blank">Containers</a></td>
+            <td colspan=2><a href="https://attack.mitre.org/matrices/enterprise/containers/" target="_blank">Containers</a></td>
         </tr>
         <tr>
             <td rowspan=2><a href="https://attack.mitre.org/matrices/mobile/" target="_blank">Mobile</a></td>
-            <td><a href="https://attack.mitre.org/matrices/mobile/android/" target="_blank">Android</a></td>
+            <td colspan=2><a href="https://attack.mitre.org/matrices/mobile/android/" target="_blank">Android</a></td>
         </tr>
         <tr>
-            <td><a href="https://attack.mitre.org/matrices/mobile/ios/" target="_blank">iOS</a></td>
+            <td colspan=2><a href="https://attack.mitre.org/matrices/mobile/ios/" target="_blank">iOS</a></td>
         </tr>
         <tr>
             <td colspan=3><a href="https://collaborate.mitre.org/attackics/index.php/Main_Page" target="_blank">ICS</a> (industrial control systems)</td>
