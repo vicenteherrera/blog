@@ -11,20 +11,35 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 /* append your custom style below */
 
+/* Bold text */
+
 b, strong {
   font-weight: 600;
   color: black
 }
+
 html[mode=dark] {
   b, strong {
     color: white;
   }
+}
+
+/* Alerts */
+
+.alert-warning .fas {
+  color: orange;
+}
+.alert-info .fas {
+  color: navy;
+}
+
+html[mode=dark] {
   .alert-warning {
     color: #b4ab91;
     background-color: #3a372f;
     border: 1px solid #8d8671;
     .fas {
-      color: orange !important;
+      color: orange;
     }
   }
   .alert-info {
@@ -32,27 +47,13 @@ html[mode=dark] {
     background-color: #07333a;
     border: 1px solid #10707f;
     .fas {
-      color: #5d73ff  !important;
+      color: #5d73ff;
     }
   }
 }
 
-
+/* Dashed table */
 
 table.dashed-table tbody tr, table.dashed-table tbody td {
   border: 1px dashed #999;
 }
-
-
-
-
-// .alert-warning:before {
-//   content: '<i class="fas fa-exclamation-triangle" style="color:orange;" aria-hidden="true"></i>'
-// }
-
-// .alert-info {
-//   color: rgb(49,112,143) !important;
-// }
-
-// https://developer.run/17
-// https://about.gitlab.com/handbook/markdown-guide/

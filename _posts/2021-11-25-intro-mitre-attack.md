@@ -44,7 +44,7 @@ our sponsors' problems. Our federal sponsors include the Department of Defense, 
 
 They have some interesting free publications like [Ten Strategies of a World-Class](https://www.mitre.org/publications/all/ten-strategies-of-a-world-class-cybersecurity-operations-center){:target="_blank"}, [Cybersecurity Operations Center](https://www.mitre.org/publications/all/ten-strategies-of-a-world-class-cybersecurity-operations-center){:target="_blank"}, and other works unrelated to cybersecurity like [AI Ethics discussion](https://govmatters.tv/tech-leadership-series-a-i-ethics/){:target="_blank"} or [Space Policy podcast](https://www.aiaa.org/events-learning/podcasts){:target="_blank"}.
 
-<i class="fas fa-info-circle" style="color:navy;" aria-hidden="true"></i> "MITRE" is not an acronym, has no special meaning, and their official full name is just "The MITRE Corporation".
+<i class="fas fa-info-circle" aria-hidden="true"></i> "MITRE" is not an acronym, has no special meaning, and their official full name is just "The MITRE Corporation".
 {:.alert.alert-info}
 
 
@@ -148,7 +148,7 @@ The list of all possible available _tactics_ on any of the _matrices_ is:
 * [Exfiltration](https://attack.mitre.org/tactics/TA0010/){:target="_blank"}: The adversary is trying to steal data.
 * [Impact](https://attack.mitre.org/tactics/TA0040/){:target="_blank"}: The adversary is trying to manipulate, interrupt, or destroy your systems and data.
 
-<i class="fas fa-exclamation-triangle" style="color:orange;" aria-hidden="true"></i> Understanding this list of tactics, what each one means and the difference between each other is the most direct value you are going to take from _ATT&CK_. Go ahead and visit each one of their links to read their definitions.
+<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Understanding this list of tactics, what each one means and the difference between each other is the most direct value you are going to take from _ATT&CK_. Go ahead and visit each one of their links to read their definitions.
 {:.alert.alert-warning}
 
 Only relevant _tactics_ and _techniques_ are included on each matrix, so they may not show in their representation on _ATT&CK_ website.
