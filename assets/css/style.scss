@@ -34,6 +34,11 @@ html[mode=dark] {
     color: white;
   }
 }
+@media screen and (prefers-color-scheme: dark) {
+  b, strong {
+    color: white;
+  }
+}
 
 /* Alerts */
 
