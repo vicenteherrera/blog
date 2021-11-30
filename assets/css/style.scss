@@ -16,7 +16,7 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 #sidebar .site-title a {
   color: #05656f;
 }
-html[mode=dark] {
+@mixin title-color-dark {
   #sidebar .site-title a {
     color: #30959f;
   }
@@ -29,12 +29,7 @@ b, strong {
   color: black
 }
 
-html[mode=dark] {
-  b, strong {
-    color: white;
-  }
-}
-@media screen and (prefers-color-scheme: dark) {
+@mixin strong-color-dark {
   b, strong {
     color: white;
   }
@@ -49,7 +44,7 @@ html[mode=dark] {
   color: navy;
 }
 
-html[mode=dark] {
+@mixin alerts-dark {
   .alert-warning {
     color: #b4ab91;
     background-color: #3a372f;
@@ -73,7 +68,7 @@ html[mode=dark] {
 .quote {
   color: #666;
 }
-html[mode=dark] {
+@mixin quote-dark {
   .quote {
     color:#888;
   }
@@ -83,4 +78,19 @@ html[mode=dark] {
 
 table.dashed-table tbody tr, table.dashed-table tbody td {
   border: 1px dashed #999;
+}
+
+/* Dark theme mixins */
+
+@mixin dark-theme-mixins {
+  @include strong-color-dark;
+  @include title-color-dark;
+  @include alerts-dark;
+  @include quote-dark;
+}
+html[mode=dark] {
+  @include dark-theme-mixins;
+}
+@media screen and (prefers-color-scheme: dark) {
+  @include dark-theme-mixins;
 }
