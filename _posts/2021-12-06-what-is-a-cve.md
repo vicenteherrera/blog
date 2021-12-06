@@ -157,8 +157,10 @@ _CVSS_ V3.1 metrics and possible values are:
 The metrics and values can be shown in a vector representation, that requires all metrics from the base score, and optionally some from the temporal or environmental score. The Severity is a combined score calculated with pre-established formula in the range from 0 to 10.
 
 For example, for [CVE-2020-0796](https://nvd.nist.gov/vuln/detail/cve-2020-0796){:target="_blank"}:
-* CVSS 3.X Severity: 10.0
-* Vector: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H
+* CVSS 3.X Severity: **10.0**
+* Vector: `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H`
+
+Pretty scary that one, isn't it?
 
 CVSS metrics is a complex topic that [requires further study](https://en.wikipedia.org/wiki/Common_Vulnerability_Scoring_System){:target="_blank"} if you want to learn the fine details about this information, where you can find several [websites](https://www.first.org/cvss/calculator/3.1){:target="_blank"} that assist in its calculation.
 
