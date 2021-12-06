@@ -24,7 +24,7 @@ That sounds familiar, isn't it? You are trying to figure out the numbers written
 
 You have seen it before on many occasions where a new vulnerability is discovered, and while some may have a fancy name as _"SMBGhost"_ or _"BlueKeep"_, they are always accompanied by a sequence identifier like **CVE-2020-0796** or **CVE-2019-0708**.
 
-For example, scanning the container image [node:latest](https://hub.docker.com/_/node){:target="_blank"} at the time of writing this post with the open-source vulnerability scanner [Trivy](https://github.com/aquasecurity/trivy){:target="_blank"}, you see many entries like:
+For example, scanning the container image [node:latest](https://hub.docker.com/_/node){:target="_blank"} at the time of writing this post with an open-source vulnerability scanner like[Trivy](https://github.com/aquasecurity/trivy){:target="_blank"} or [Clair](https://github.com/quay/clair); or a commercial one like [Sysdig](https://sysdig.com){:target="_blank"} or [Aqua](https://www.aquasec.com/){:target="_blank"}, you see many entries like:
 
 Library        | Vulnerability ID | Severity | Installed| Fixed| TITLE 
 ---------------|------------------|----------|----------------|------------|----------------------------------
