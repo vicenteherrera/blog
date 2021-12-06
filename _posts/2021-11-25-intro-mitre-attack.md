@@ -10,7 +10,7 @@ image:
   width: 644   # in pixels
   height: 163   # in pixels
   alt: MITRE ATT&CK logo
-pin: true
+pin: false
 ---
 
 When you start working on cybersecurity, you for sure start seeing references to things like **privilege escalation**, **lateral movement**, or **exfiltration** continuously.<!--more--> As categories for security tools, rules, or types of attacks, with mentions to something called **MITRE**.
