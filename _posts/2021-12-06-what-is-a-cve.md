@@ -178,6 +178,9 @@ If there is a fix available, the decision is easy, go apply the fixing version. 
 
 Vulnerabilities with critical or high scores mean that they live on an important part of that software, or that if they are compromised the level of access a malicious actor can obtain is huge. But if there is no known exploit, it may be just something programmers have found not being done well in its code, but for which there is no practical way of exploiting. Several vulnerabilities like this, with _critical_ score, are old but have no fix because it's practically impossible to exploit.
 
+<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> An important consideration is also how critical is the workload you are protecting in the whole scheme of your application/infrastructure. For you, **workloads exposed to the public Internet**, that **handle payments** or **sensitive private personal information**, for example, should boost the priority of the vulnerabilities found there.
+{:.alert.alert-warning}
+
 Judging what to do in each situation is part of the security specialist's job.
 
 ## SCAP and OVAL
