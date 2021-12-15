@@ -88,9 +88,13 @@ table.dashed-table tbody tr, table.dashed-table tbody td {
   @include alerts-dark;
   @include quote-dark;
 }
+
 html[mode=dark] {
   @include dark-theme-mixins;
 }
+
 @media screen and (prefers-color-scheme: dark) {
-  @include dark-theme-mixins;
+  html:not([mode=light]) {
+    @include dark-theme-mixins;
+  }
 }
