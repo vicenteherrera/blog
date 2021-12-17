@@ -10,7 +10,7 @@ image:
   width: 1101   # in pixels
   height: 669   # in pixels
   alt: Cyberpunk 2077 car hijack
-pin: true
+pin: false
 ---
 
 You are playing _Cyberpunk 2077_, and [on the introductory mission](https://youtube.com/clip/Ugkx76_kl_Faj6ShXC7pk2cqRINrr_d3VxhD){:target="_blank"}, you have to steal a car. After using an electronic tool first to open its door, you get inside, and while the hijack takes place, a message appears on the sophisticated onscreen display of the car<!--more-->:
