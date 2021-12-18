@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Test draft"
-tags: CVE Log4j vulnerability CVE-2021-44228 CVE-2021-45046 log4shell RCE report history security cybersecurity
+tags: [CVE, vulnerability, remote code execution, security, cybersecurity]
 category: drafts
 excerpt_separator: <!--more-->
 date: 2021-11-01 17:30:00 +01
