@@ -43,6 +43,14 @@ b, strong {
 .alert-info .fas {
   color: navy;
 }
+.vicente-opinion {
+  background-image: url(/blog/v.png);
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  background-position: center left;
+  padding-left: 90px;
+  min-height: 80px;
+}
 
 @mixin alerts-dark {
   .alert-warning {

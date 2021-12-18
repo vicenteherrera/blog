@@ -46,3 +46,6 @@ _The MITRE Corporation_ is an important source of diverse cybersecurity informat
 If you think I should include more information on any of the _MITRE_ tools, want some advice on _cloud-native cybersecurity_, or just want to chat with me, [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> let me know](https://twitter.com/vicen_herrera){:target="_blank"}.
 
 And if you found this information useful, let others know and [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> share it in a tweet!](https://twitter.com/share?url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}){:target="_blank"}
+
+I think they have done an excellent job.
+{:.alert.alert-success.vicente-opinion}
