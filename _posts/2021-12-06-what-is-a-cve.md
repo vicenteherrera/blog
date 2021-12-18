@@ -76,7 +76,8 @@ For example, the _CVE record_ for [CVE-2017-5638](https://www.cve.org/CVERecord?
         * 2.5.x before 2.5.10.1
 * _Reference links_: (a long [list of references](https://www.cve.org/CVERecord?id=CVE-2017-5638){:target="_blank"} with additional information)
 
-[MITRE ATT&CK](/blog/intro-mitre-attack) _tactics_ and _techniques_ is also planned [to be added to _CVE records_ soon](https://medium.com/mitre-engenuity/cve-mitre-att-ck-to-understand-vulnerability-impact-c40165111bf7){:target="_blank"}.
+<i class="fas fa-info-circle" aria-hidden="true"></i> **MITRE ATT&CK** _tactics_ and _techniques_ are sometimes referenced in the description of the vulnerability, and are planned [to be formaly added to _CVE records_ soon](https://medium.com/mitre-engenuity/cve-mitre-att-ck-to-understand-vulnerability-impact-c40165111bf7){:target="_blank"}. Learn more about them in my blog post ["Introduction to MITRE ATT&CK"](/blog/intro-mitre-attack){:target="_blank"}
+{:.alert.alert-info}
 
 ## NVD
 
@@ -87,7 +88,10 @@ The [National Institute of Standards and Technology (NIST)](https://www.nist.gov
 
 The _NVD_ is also sponsored by [CISA](https://www.dhs.gov/cisa/cybersecurity-division/){:target="_blank"} (as is the _CVE program_), and is also available to the public and free to use.
 
-An example _NVD_ entry for a _CVE id_ is the [CVE-2020-0796 NVD entry](https://nvd.nist.gov/vuln/detail/cve-2020-0796){:target="_blank"}, which includes:
+An example _NVD_ entry for a _CVE id_ is the [CVE-2020-0796 NVD entry](https://nvd.nist.gov/vuln/detail/cve-2020-0796){:target="_blank"}:
+
+**CVE-2020-0796**
+
 * CVSS 3.X Severity and vector (more information in the following section)
   * Base Score: **10.0 CRITICAL**
   * Vector: `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H`
@@ -166,7 +170,8 @@ CVSS metrics is a complex topic that [requires further study](https://en.wikiped
 
 ## Two kinds of vulnerabilities
 
-Some experts tell that [there is only two kinds of vulnerabilities](https://vaceituno.medium.com/only-two-classes-of-vulnerabilities-exist-not-three-233d1af89aac){:target="_blank"}: those that you are going to fix, and those that you are not.
+Me and other experts say that [there is only two kinds of vulnerabilities](https://vaceituno.medium.com/only-two-classes-of-vulnerabilities-exist-not-three-233d1af89aac){:target="_blank"}: those that you are going to fix, and those that you are not.
+{:.alert.alert-success.vicente-opinion}
 
 A vulnerability scanner may show you in a container or host a plethora of found vulnerabilities on operating system or software packages. You usually should focus on:
 
@@ -178,7 +183,7 @@ If there is a fix available, the decision is easy, go apply the fixing version. 
 
 Vulnerabilities with critical or high scores mean that they live on an important part of that software, or that if they are compromised the level of access a malicious actor can obtain is huge. But if there is no known exploit, it may be just something programmers have found not being done well in its code, but for which there is no practical way of exploiting. Several vulnerabilities like this, with _critical_ score, are old but have no fix because it's practically impossible to exploit.
 
-<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> An important consideration is also how critical is the workload you are protecting in the whole scheme of your application/infrastructure. For you, **workloads exposed to the public Internet**, that **handle payments** or **sensitive private personal information**, for example, should boost the priority of the vulnerabilities found there.
+<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> An important additional consideration is **risk**: how critical is the workload you are protecting in the whole scheme of your application/infrastructure. For you, **workloads exposed to the public Internet**, that **handle payments** or **sensitive private personal information**, for example, should boost the priority of the vulnerabilities found there.
 {:.alert.alert-warning}
 
 Judging what to do in each situation is part of the security specialist's job.
