@@ -7,10 +7,10 @@ prerequisites:
 	bundle install
 
 serve-watch:
-	bundle exec jekyll serve --watch
+	JEKYLL_ENV=local bundle exec jekyll serve --watch
 
 serve-drafts-watch:
-	bundle exec jekyll serve --watch --drafts --unpublished --future
+	JEKYLL_ENV=local bundle exec jekyll serve --watch --drafts --unpublished --future
 
 test:
 	exit 0
