@@ -2,7 +2,7 @@
 layout: post
 title:  "Introduction to MITRE ATT&CK"
 tags: MITRE ATT&CK D3FEND security cybersecurity cloud-native
-category: security
+category: Security
 excerpt_separator: <!--more-->
 date: 2021-11-25 19:34:00 +01
 image:

@@ -2,7 +2,7 @@
 layout: post
 title:  "What is a CVE?"
 tags: CVE CNA MITRE NVD NIST CVSS SCAP OpenSCAP OVAL security cybersecurity cloud-native
-category: security
+category: Security
 excerpt_separator: <!--more-->
 date: 2021-12-06 5:20:00 +01
 image:

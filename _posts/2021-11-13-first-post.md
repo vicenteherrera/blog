@@ -2,7 +2,7 @@
 layout: post
 title:  "Hi everybody... welcome to my blog!"
 tags: test personal
-category: personal
+category: Personal
 excerpt_separator: <!--more-->
 image.src: v.png
 ---
