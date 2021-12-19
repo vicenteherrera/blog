@@ -11,6 +11,7 @@ image:
   height: 163   # in pixels
   alt: MITRE ATT&CK logo
 pin: false
+description: When you start working on cybersecurity, you see references to things like privilege escalation, lateral movement, or exfiltration all the time. What do they exactly mean?
 ---
 
 When you start working on cybersecurity, you for sure start seeing references to things like **privilege escalation**, **lateral movement**, or **exfiltration** continuously.<!--more--> As categories for security tools, rules, or types of attacks, with mentions to something called **MITRE**.

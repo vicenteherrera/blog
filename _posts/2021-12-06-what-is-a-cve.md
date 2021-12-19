@@ -11,6 +11,7 @@ image:
   height: 669   # in pixels
   alt: Cyberpunk 2077 car hijack
 pin: false
+description: On Cyberpunk 2077, when you steal a car, you use a sophisticated gadget and a CVE id appears on its screen. Is this something real in the world of security?
 ---
 
 You are playing _Cyberpunk 2077_, and [on the introductory mission](https://youtube.com/clip/Ugkx76_kl_Faj6ShXC7pk2cqRINrr_d3VxhD){:target="_blank"}, you have to steal a car. After using an electronic tool first to open its door, you get inside, and while the hijack takes place, a message appears on the sophisticated onscreen display of the car<!--more-->:

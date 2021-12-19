@@ -11,6 +11,7 @@ image:
   height: 758   # in pixels
   alt: Same day vulnerability is disclosed, Minecraft demonstrates vulnerable by sending a message in the chat window
 pin: false
+description: "9th December 2021 a critical update was published for Log4j&nbsp;2. Its massive use has caused a huge impact all over the Internet, but the story start many years before."
 ---
 
 This is a test draft.
