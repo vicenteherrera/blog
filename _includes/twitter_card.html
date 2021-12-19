@@ -1,0 +1,26 @@
+<!-- Twitter cards -->
+
+{% if page.layout == 'home' %}
+  <meta name="twitter:title" content="{{ site.title | xml_escape }}"><!-- required -->
+  {% capture twitter_summary %}{{ site.tagline }}{% endcapture %}
+{% else %}
+  <meta name="twitter:title" content="{{ page.title | xml_escape }}"><!-- required -->
+  {% if page.excerpt %}
+    {% capture twitter_summary %}{{ page.excerpt | markdownify | strip_html | truncate: 200 }}{% endcapture %}
+  {% else %}
+    {% capture twitter_summary %}{{ page.content | markdownify | strip_html | truncate: 200 }}{% endcapture %}
+  {% endif %}
+{% endif %}
+
+<meta name="twitter:creator" content="@{{ site.twitter.username }}"><!-- optional -->
+<meta name="twitter:description" content="{{ twitter_summary | xml_escape | strip }}"><!-- optional -->
+<meta name="twitter:site" content="@{{ site.twitter.username }}"><!-- required -->
+
+{% if page.image.src %}
+<meta name="twitter:card"  content="summary_large_image">
+<meta name="twitter:image" content="{{ site.url_domain }}{{ page.image.src }}">
+{% else %}
+<meta name="twitter:card"  content="summary">
+<meta name="twitter:image" content="{{ site.url }}{{ site.avatar }}">
+{% endif %}
+
