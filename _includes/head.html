@@ -25,7 +25,8 @@
   {% endif %}
 
   {% seo title=false %}
-
+  {% include twitter_card.html %}
+  
   <title>
   {%- unless page.layout == "home" -%}
     {{ page.title | append: " | "}}
@@ -35,7 +36,7 @@
 
   {% include favicons.html %}
 
-  {% include twitter_card.html %}
+
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
