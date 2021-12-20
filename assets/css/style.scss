@@ -22,6 +22,29 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
   }
 }
 
+/* Thumbnails in home */
+
+.thumbnail {
+  float: left;
+  height: 90px; width: 150px;
+  border-radius: 7px; 
+  margin:3px 15px 5px 0;
+  background-size: cover;
+}
+
+.thumbnail-meta {
+  margin-left: 163px;
+}
+
+@media (max-width: 849px) {
+  .thumbnail {
+    display: none;
+  }
+  .thumbnail-meta {
+    margin-left: inherit;
+  }
+}
+
 /* Bold text */
 
 b, strong {

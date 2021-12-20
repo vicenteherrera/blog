@@ -4,7 +4,12 @@ title:  "Hi everybody... welcome to my blog!"
 tags: test personal
 category: Personal
 excerpt_separator: <!--more-->
-image.src: v.png
+image:
+  src: /blog/images/hello_world.png
+  width: 640   # in pixels
+  height: 407   # in pixels
+  alt: Hello world
+description: "It was about time for me to really have a blog. Or should I say Vlog?"
 ---
 
 It was about time for me to really have a blog. Or should I say Vlog? 
