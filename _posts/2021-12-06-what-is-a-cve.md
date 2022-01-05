@@ -114,6 +114,8 @@ An example _NVD_ entry for a _CVE id_ is the [CVE-2020-0796 NVD entry](https://n
 * Change History
   * 7 change records found [show changes](https://nvd.nist.gov/vuln/detail/cve-2020-0796#VulnChangeHistorySection)
 
+The reference links provided can classified as _Third Party Advisory_, _VDB Entry_ (Vulnerability Database Entry), _Exploit_, _Mailing List_, _Mitigation_, _Release Notes_, _Patch_, _US Government Resource_ among others. Of special interest is the **Exploit** category that indicates that there is a known exploit for the vulnerability.
+
 [CPE (Common Platform Enumeration)](https://nvd.nist.gov/products){:target="_blank"} and [SWID (Software Identification)](https://csrc.nist.gov/projects/Software-Identification-SWID){:target="_blank"} are used to identify the software and version where a vulnerability has been found.
 
 _NVD_ also includes references to the [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/){:target="_blank"} by [MITRE](/blog/intro-mitre-attack#mitre-corporation) when describing the vulnerability.
