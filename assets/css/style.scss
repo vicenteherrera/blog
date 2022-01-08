@@ -36,7 +36,13 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 }
 .thumb-container {
   width: 190px; float: left;
+
 }
+#post-list .post-preview .thumb-container a:hover
+{
+  border-bottom: none;
+}
+
 #post-list .post-preview .post-content>p {
   -webkit-line-clamp: 3;
 }
