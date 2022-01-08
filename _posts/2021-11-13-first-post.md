@@ -34,4 +34,4 @@ You made to the end of the fist post! Now go read [one of the other ones](/blog/
 
 You can also [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> read my tweets](https://twitter.com/vicen_herrera){:target="_blank"}.
 
-And if you like any of the articles here, please remember to [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> share it in a tweet!](https://twitter.com/share?url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}){:target="_blank"}
+And if you like any of the articles here, please remember to [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> share it in a tweet](https://twitter.com/share?url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}){:target="_blank"}, or [buy me a coffee](https://ko-fi.com/R5R77UF84){:target="_blank"} if you want!
