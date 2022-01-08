@@ -25,23 +25,36 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 /* Thumbnails in home */
 
 .thumbnail {
-  float: left;
-  height: 90px; width: 150px;
-  border-radius: 7px; 
+  width: 180px;
+  height: auto;
+  border-radius: 7px;
   margin:3px 15px 5px 0;
   background-size: cover;
 }
-
-.thumbnail-meta {
-  margin-left: 163px;
+.post-meta-mobile.d-flex  {
+  display: none !important;
+}
+.thumb-container {
+  width: 190px; float: left;
+}
+#post-list .post-preview .post-content>p {
+  -webkit-line-clamp: 3;
 }
 
 @media (max-width: 849px) {
   .thumbnail {
-    display: none;
+    width: 100%;
+    height: auto;
   }
-  .thumbnail-meta {
-    margin-left: inherit;
+  .post-meta-mobile.d-flex {
+    display: inherit !important;
+  }
+  .post-meta-desktop.d-flex {
+    display: none !important;
+  }
+  .thumb-container {
+    width: 100%;
+    float: inherit;
   }
 }
 
