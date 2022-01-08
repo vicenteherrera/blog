@@ -24,7 +24,7 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 /* Thumbnails in home */
 
-#post-list .post-preview:not(:last-of-type) {
+#post-list .post-preview:not(:nth-of-type(1)) {
   border-top: 1px solid var(--main-border-color);
   border-bottom: none;
 }
@@ -32,12 +32,10 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
   border-top: none;
   border-bottom: none;
 }
-
 .thumb-container {
   width: 190px;
   float: left;
 }
-
 .thumbnail {
   width: 180px;
   height: auto;
@@ -57,6 +55,11 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 }
 .post-meta-mobile {
   display: none;
+}
+.pagination {
+  clear: both;
+  padding-top: 15px;
+  border-top: 1px solid var(--main-border-color);
 }
 @media (max-width: 849px) {
   .thumbnail {
