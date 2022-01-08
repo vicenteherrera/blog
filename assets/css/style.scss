@@ -45,30 +45,29 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
   margin:3px 15px 5px 0;
   background-size: cover;
 }
-.post-meta-mobile.d-flex  {
-  display: none !important;
-}
-
 #post-list .post-preview .thumb-container a:hover
 {
   border-bottom: none;
 }
-
 #post-list .post-preview .post-content>p {
   -webkit-line-clamp: 3;
 }
-
-
+.post-meta-desktop {
+  display: flex;
+}
+.post-meta-mobile {
+  display: none;
+}
 @media (max-width: 849px) {
   .thumbnail {
     width: 100%;
     height: auto;
   }
-  .post-meta-mobile.d-flex {
-    display: inherit !important;
+  .post-meta-desktop {
+    display: none;
   }
-  .post-meta-desktop.d-flex {
-    display: none !important;
+  .post-meta-mobile {
+    display: flex;
   }
   .thumb-container {
     width: 100%;
