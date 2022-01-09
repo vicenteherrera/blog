@@ -51,9 +51,17 @@ layout: page
       {% capture thumb_meta_class %}thumbnail-meta{% endcapture %}
 
       <div class="thumb-container">
-      <a href="{{ post.url | relative_url }}"
-            ><img class="thumbnail img-fluid" src="{{ post.image.src }}" alt="{{ post.title }}" /></a>
-      <br />
+
+        <a href="{{ post.url | relative_url }}"><picture>
+            <source srcset="{{ post.image.src }}_180 180w, {{ post.image.src }}_360 2x"
+              media="(min-width: 854px)">
+            <source srcset="{{ post.image.src }}_360 360w, {{ post.image.src }}_720 2x">
+            <source srcset="{{ post.image.src }}_720 720w, {{ post.image.src }} 2x">
+            <source srcset="{{ post.image.src }}">
+            <img class="thumbnail img-fluid" src="{{ post.image.src }}" alt="{{ post.title }}">
+          </picture></a>
+
+        <br />
 
         <!-- post meta -->
         <div class="{{ thumb_meta_class }} post-meta text-muted justify-content-between post-meta-desktop">

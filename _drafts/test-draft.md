@@ -6,7 +6,7 @@ category: drafts
 excerpt_separator: <!--more-->
 date: 2021-11-01 17:30:00 +01
 image:
-  src: /blog/images/minecraft_log4j.png
+  src: /blog/images/featured/minecraft_log4j.png
   width: 1893   # in pixels
   height: 758   # in pixels
   alt: Same day vulnerability is disclosed, Minecraft demonstrates vulnerable by sending a message in the chat window
