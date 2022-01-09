@@ -6,6 +6,11 @@ prerequisites:
 	gem install bundler
 	bundle install
 
+install-imagemagick:
+	brew install imagemagick ||:
+	sudo apt-get update
+	sudo apt-get install imagemagick -y 
+
 serve-watch:
 	JEKYLL_ENV=local bundle exec jekyll serve --watch
 

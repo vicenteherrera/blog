@@ -5,7 +5,7 @@ tags: test personal
 category: Personal
 excerpt_separator: <!--more-->
 image:
-  src: /blog/images/hello_world.png
+  src: /blog/images/featured/hello_world.png
   width: 640   # in pixels
   height: 407   # in pixels
   alt: Hello world

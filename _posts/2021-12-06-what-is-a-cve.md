@@ -6,7 +6,7 @@ category: Security
 excerpt_separator: <!--more-->
 date: 2021-12-06 5:20:00 +01
 image:
-  src: /blog/images/cyberpunk-cve.png
+  src: /blog/images/featured/cyberpunk-cve.png
   width: 1101   # in pixels
   height: 669   # in pixels
   alt: Cyberpunk 2077 car hijack

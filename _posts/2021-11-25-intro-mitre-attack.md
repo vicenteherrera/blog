@@ -6,7 +6,7 @@ category: Security
 excerpt_separator: <!--more-->
 date: 2021-11-25 19:34:00 +01
 image:
-  src: /blog/images/mitre-attack-logo.png
+  src: /blog/images/featured/mitre-attack-logo.png
   width: 644   # in pixels
   height: 163   # in pixels
   alt: MITRE ATT&CK logo
