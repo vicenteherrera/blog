@@ -48,69 +48,19 @@ layout: page
   <div class="post-preview" style="clear: left">
 
     {% if post.image.src %}
-      {% capture thumb_meta_class %}thumbnail-meta{% endcapture %}
-
       <div class="thumb-container">
-
-        <a href="{{ post.url | relative_url }}"><picture>
-            <source srcset="{{ post.image.src }}_180 180w, {{ post.image.src }}_360 2x"
-              media="(min-width: 854px)">
-            <source srcset="{{ post.image.src }}_360 360w, {{ post.image.src }}_720 2x">
-            <source srcset="{{ post.image.src }}_720 720w, {{ post.image.src }} 2x">
-            <source srcset="{{ post.image.src }}">
-            <img class="thumbnail img-fluid" src="{{ post.image.src }}" alt="{{ post.title }}">
-          </picture></a>
-
-        <br />
-
-        <!-- post meta -->
-        <div class="{{ thumb_meta_class }} post-meta text-muted justify-content-between post-meta-desktop">
-
-          <div>
-            <!-- posted date -->
-            <i class="far fa-calendar fa-fw"></i>
-            {% include timeago.html date=post.date tooltip=true %}
-
-            <!-- time to read -->
-            <i class="far fa-clock fa-fw"></i>
-            {% include read-time.html content=post.content %}
-
-            <!-- page views -->
-            {% if site.google_analytics.pv.proxy_endpoint or site.google_analytics.pv.cache_path %}
-            <i class="far fa-eye fa-fw"></i>
-            <span id="pv_{{-post.title-}}" class="pageviews">
-              <i class="fas fa-spinner fa-spin fa-fw"></i>
-            </span>
-            {% endif %}
-          </div>
-
-          {% if post.pin %}
-          <div class="pin">
-            <i class="fas fa-thumbtack fa-fw"></i>
-            <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
-          </div>
-          {% endif %}
-
-        </div> <!-- .post-meta -->
-        <!-- end post meta -->
-
+        <a href="{{ post.url | relative_url }}">{% include post-thumbnail.html %}</a><br />
+        <!-- post meta under image -->
+        {% include post-meta.html extra_class='post-meta-desktop thumbnail-meta' %}
       </div>
-
       <h1><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h1>
-
-      
-      {% else %}
-      {% capture thumb_meta_class %}{% endcapture %}
+    {% else %}
       <h1>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
       </h1>
-      
     {% endif %}
-
-
     
     <div class="post-content">
-
       <p>
         {% if post.description %}
           {{ post.description | markdownify | strip_html | truncate: 200 }}
@@ -123,38 +73,12 @@ layout: page
       </p>
     </div>
 
-
-    <!-- post meta -->
-    <div class="{{ thumb_meta_class }} post-meta text-muted justify-content-between post-meta-mobile">
-
-      <div>
-        <!-- posted date -->
-        <i class="far fa-calendar fa-fw"></i>
-        {% include timeago.html date=post.date tooltip=true %}
-
-        <!-- time to read -->
-        <i class="far fa-clock fa-fw"></i>
-        {% include read-time.html content=post.content %}
-
-        <!-- page views -->
-        {% if site.google_analytics.pv.proxy_endpoint or site.google_analytics.pv.cache_path %}
-        <i class="far fa-eye fa-fw"></i>
-        <span id="pv_{{-post.title-}}" class="pageviews">
-          <i class="fas fa-spinner fa-spin fa-fw"></i>
-        </span>
-        {% endif %}
-      </div>
-
-      {% if post.pin %}
-      <div class="pin">
-        <i class="fas fa-thumbtack fa-fw"></i>
-        <span>{{ site.data.locales[lang].post.pin_prompt }}</span>
-      </div>
-      {% endif %}
-
-    </div> <!-- .post-meta -->
-    <!-- end post meta -->
-    
+    <!-- post meta under post on responsive -->
+    {% if post.image.src %}
+      {% include post-meta.html extra_class='post-meta-mobile thumbnail-meta' %}
+    {% else %}
+      {% include post-meta.html extra_class='post-meta-mobile' %}
+    {% endif %}
 
   </div> <!-- .post-review -->
 

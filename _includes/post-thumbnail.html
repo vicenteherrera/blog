@@ -1,0 +1,9 @@
+<!-- Post thumbnail image used on home -->
+<picture>
+  <source srcset="{{ post.image.src }}_180 180w, {{ post.image.src }}_360 2x"
+    media="(min-width: 854px)">
+  <source srcset="{{ post.image.src }}_360 360w, {{ post.image.src }}_720 2x">
+  <source srcset="{{ post.image.src }}_720 720w, {{ post.image.src }} 2x">
+  <source srcset="{{ post.image.src }}">
+  <img class="thumbnail img-fluid" src="{{ post.image.src }}" alt="{{ post.title }}">
+</picture>
