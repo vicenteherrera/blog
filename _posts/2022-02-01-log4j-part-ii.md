@@ -129,7 +129,7 @@ Rogue-jndi lacked a Dockerfile to deploy using a container, so I provide one tha
 Thanks to Brian Klug for the original featured image:
 * Title: Anonymous Hacker
 * Author: [Brian Klug](https://www.flickr.com/photos/brianklug/){:target="_blank"}
-* URL: [https://www.flickr.com/photos/brianklug/6870002408/](flickr.com/photos/brianklug/6870002408){:target="_blank"}
+* URL: [flickr.com/photos/brianklug/6870002408/](https://www.flickr.com/photos/brianklug/6870002408){:target="_blank"}
 * License: [Attribution-NonCommercial 2.0 Generic (CC BY-NC 2.0)](https://creativecommons.org/licenses/by-nc/2.0/){:target="_blank"}
 * Modifications made: Added sticker "My other computer is your Log4j server" to laptop cover.
 
