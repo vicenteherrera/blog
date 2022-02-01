@@ -5,11 +5,16 @@ all: serve-drafts-watch
 prerequisites:
 	gem install bundler
 	bundle install
+	$$(MAKE) -s install-imagemagick
 
 install-imagemagick:
+	@echo "Installing imagemagick"
 	brew install imagemagick ||:
 	sudo apt-get update
-	sudo apt-get install imagemagick -y 
+	sudo apt-get install imagemagick -y
+
+make generate-thumbnails:
+	./tools/thumbnails.sh
 
 serve-watch:
 	JEKYLL_ENV=local bundle exec jekyll serve --watch
