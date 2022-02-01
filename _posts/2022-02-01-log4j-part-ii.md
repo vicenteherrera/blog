@@ -11,7 +11,7 @@ image:
   height: 1106   # in pixels
   alt: A hacker exploits a Log4j 2 server
 pin: false
-description: "Let's do a technical deep dive into the Log4j 2 vulnerability and run a Kubernetes proof of concept."
+description: "A technical deep dive into the Log4j 2 vulnerability, and experiment with a Kubernetes proof of concept."
 ---
 
 ## Introduction
