@@ -14,8 +14,6 @@ pin: false
 description: "A technical deep dive into the Log4j 2 vulnerability, and experiment with a Kubernetes proof of concept."
 ---
 
-## Introduction
-
 _Sorry, I couldn't resist using a photo of a masked man operating in the dark several computers while standing up. It won't happen again._
 
 In this second post about the Log4j&nbsp;2 vulnerabilities, I will describe **technical details** of the _remote code execution_, as well as present a **proof of concept** using **Kubernetes** that is very easy to deploy, safe to run in a test environment, and very useful to test security tools, fixes, and mitigations.
