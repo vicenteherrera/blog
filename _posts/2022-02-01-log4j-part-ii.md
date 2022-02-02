@@ -53,9 +53,10 @@ So for a successful attack, you can use the javax.el.ELProcessor class that has 
 
 Oracle included in the past improvements on Java to try to fix the JNDI vulnerability that were not succesfull:
 
-📅**2016-08-03**: [BlackHat USA 2016 presentation](https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf){:target="_blank"} showcasing [JNDI injection Remote Code Execution](https://www.youtube.com/watch?v=Y8a5nB-vy78&t=1529s){:target="_blank"}.  
-📅**2017-01-17**, Java 8u121: Added codebase restrictions to RMI, where `classFactoryLocation` is not used for deserialization. LDAP is still vulnerable, and `javaFactory` is still usable to use for RCE.   
-📅**2018-10-16**, Java 8u191: Same `classFactoryLocation` restriction added also to LDAP. `javaFactory` is still usable to use for RCE on both RMI and LDAP to this day.  
+📅**2015-10-21**: [CVE&#8209;2015&#8209;4902](https://nvd.nist.gov/vuln/detail/CVE-2015-4902) published without specific details.  
+📅**2016-08-03**: [BlackHat USA 2016 presentation](https://www.blackhat.com/docs/us-16/materials/us-16-Munoz-A-Journey-From-JNDI-LDAP-Manipulation-To-RCE.pdf){:target="_blank"} showcasing [JNDI injection Remote Code Execution](https://www.youtube.com/watch?v=Y8a5nB-vy78&t=1529s){:target="_blank"} for the previous CVE.  
+📅**2017-01-17**: Oracle updates Java to 8u121. Adds codebase restrictions to RMI, where `classFactoryLocation` is not used for deserialization. LDAP is still vulnerable, and `javaFactory` is still usable to use for RCE.   
+📅**2018-10-16**: Oracle updates Java to 8u191. Same `classFactoryLocation` restriction added also to LDAP. `javaFactory` is still usable to use for RCE on both RMI and LDAP to this day.  
 
 Read the full Log4j vulnerability history on the previous article "[Log4j part I: History](/blog/log4j-part-i/){:target="_blank"}".
 
