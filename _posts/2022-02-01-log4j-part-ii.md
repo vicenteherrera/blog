@@ -81,8 +81,8 @@ kubectl apply -f https://raw.githubusercontent.com/vicenteherrera/log4shell-kube
 ```
 
 This will deploy for Kubernetes objects:
- * `vulnerable-log4j` service, that exposes `vulnerable-log4j-app` deployment, that deploys `quay.io/vicenteherrera/log4shell-vulnerable-app` container image.
- * `rogue-jndi` service, that exposes `rogue-jndi-app` deployment, that deploys `quay.io/vicenteherrera/rogue-jndi` container image.
+ * `vulnerable-log4j` service, that exposes `vulnerable-log4j-app` deployment, that deploys a pod running `quay.io/vicenteherrera/log4shell-vulnerable-app` container image.
+ * `rogue-jndi` service, that exposes `rogue-jndi-app` deployment, that deploys a pod running `quay.io/vicenteherrera/rogue-jndi` container image.
 
 Everything will be deployed to the current namespace, and as we are not attaching any ingress or load balancer. A more realistic scenario would be to deploy only the vulnerable application on the cluster, expose it to the internet, and deploy a different server for the rogue JNDI server and starter attack. But this way the workloads will not be exposed to the global Internet, and the execution of the attack will not be any different.
 
