@@ -21,7 +21,9 @@ serve-watch:
 
 serve-drafts-watch:
 	JEKYLL_ENV=development JEKYLL_LOG_LEVEL=error bundle exec jekyll serve --watch --drafts --unpublished --future \
-		--strict_front_matter --verbose --trace
+		--strict_front_matter --livereload
+
+# --verbose --trace 
 
 test:
 	exit 0
