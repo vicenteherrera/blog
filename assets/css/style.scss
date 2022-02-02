@@ -36,12 +36,16 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
   width: 190px;
   float: left;
 }
-.thumbnail {
+.thumb-container .thumbnail {
   width: 180px;
+  margin:3px 15px 5px 0;
+}
+.thumbnail { /* Properties to apply also to related cards */
   height: auto;
   border-radius: 7px;
-  margin:3px 15px 5px 0;
-  background-size: cover;
+}
+.card .thumbnail {
+  min-width: auto;
 }
 #post-list .post-preview .thumb-container a:hover
 {

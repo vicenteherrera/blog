@@ -1,7 +1,9 @@
+<!-- Post card used in related posts at the foot of a post -->
+
 <div class="card">
   <a href="{{ post.url | relative_url }}">
     <div class="card-body">
-      {% include post-thumbnail.html %}<br />
+      {% include post-thumbnail.html skip_small=1 %}<br />
 
       {% include timeago.html date=post.date class="small" %}
       <h3 class="pt-0 mt-1 mb-3" data-toc-skip>{{ post.title }}</h3>
