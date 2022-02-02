@@ -275,6 +275,5 @@ Using Machine Learning, you can train a model to read threat intelligence report
 
 _The MITRE Corporation_ is an important source of diverse cybersecurity information. The _MITRE ATT&CK framework_ contains descriptions of _Tactics_, _Techniques_, and _Procedures_ that help categorize and research security threats.
 
-If you think I should include more information on any of the _MITRE_ tools, want some advice on _cloud-native cybersecurity_, or just want to chat with me, [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> let me know](https://twitter.com/vicen_herrera){:target="_blank"}.
-
-And if you found this information useful, let others know and [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> share it in a tweet](https://twitter.com/share?url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}){:target="_blank"}, or [buy me a coffee](https://ko-fi.com/R5R77UF84){:target="_blank"} if you want!
+{% include tweet-me.html %}
+{% include author-profile.html %}

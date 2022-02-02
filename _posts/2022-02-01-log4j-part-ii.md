@@ -138,7 +138,5 @@ JNDI used for _remote code execution_ is an old story that hasn't been patched i
 
 Read more about History of Log4j vulnerabilities and JNDI on "[Part I: History]({% post_url 2021-12-17-log4j-part-i %}){:target="_blank"}" of this article series. Be ready for part III, where we evaluate and put to the test fixes and mitigations, which work, which doesn't.
 
-If there is some information I missed in this article, or just want to chat with me, [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> let me know](https://twitter.com/vicen_herrera){:target="_blank"}.
-
-And if you found this information useful, let others know and [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> share it in a tweet](https://twitter.com/share?url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}){:target="_blank"}, or [buy me a coffee](https://ko-fi.com/R5R77UF84){:target="_blank"} if you want!
-
+{% include tweet-me.html %}
+{% include author-profile.html %}

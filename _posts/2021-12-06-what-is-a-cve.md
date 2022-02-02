@@ -213,7 +213,5 @@ Other interesting sources of adversarial information are the [Malware Attribute 
 
 The _Common Vulnerability and Exposures (CVE)_ by [MITRE](/blog/intro-mitre-attack#mitre-corporation) is a way to centralize the identification of vulnerabilities as they are discovered by several organizations. You should check the [National Vulnerability Database (NVD)](https://nvd.nist.gov/vuln/search){:target="_blank"} as it always improves on the base CVE, with additional information like the CVSS vulnerabilities metrics and severity. When using a vulnerability scanner, focus on critical and high vulnerabilities, that have a fix or a known exploit.
 
-If there is something extra about CVEs that you want to know, you want some advice on _cloud-native cybersecurity_, or just want to chat with me, [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> let me know](https://twitter.com/vicen_herrera){:target="_blank"}.
-
-And if you found this information useful, let others know and [<i class="fab fa-twitter" style="color:#1DA1F2;" aria-hidden="true"></i> share it in a tweet](https://twitter.com/share?url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}){:target="_blank"}, or [buy me a coffee](https://ko-fi.com/R5R77UF84){:target="_blank"} if you want!
-
+{% include tweet-me.html %}
+{% include author-profile.html %}
