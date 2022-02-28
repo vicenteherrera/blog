@@ -11,7 +11,7 @@ GEM
     ethon (0.15.0)
       ffi (>= 1.15.0)
     eventmachine (1.2.7)
-    ffi (1.15.4)
+    ffi (1.15.5)
     forwardable-extended (2.6.0)
     html-proofer (3.19.3)
       addressable (~> 2.3)
@@ -68,14 +68,20 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
-    nokogiri (1.12.5-x86_64-linux)
+    mini_portile2 (2.8.0)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
+    nokogiri (1.13.3-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     parallel (1.21.0)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
     public_suffix (4.0.6)
     racc (1.6.0)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -99,11 +105,12 @@ GEM
     yell (2.2.2)
 
 PLATFORMS
+  ruby
   x86_64-darwin-20
   x86_64-linux
 
 DEPENDENCIES
-  html-proofer (~> 3.18)
+  html-proofer (~> 3.19, >= 3.19.3)
   jekyll-theme-chirpy (~> 4.3, >= 4.3.3)
   tzinfo (~> 1.2)
   tzinfo-data
@@ -111,4 +118,4 @@ DEPENDENCIES
   webrick (~> 1.7)
 
 BUNDLED WITH
-   2.2.33
+   2.1.4
