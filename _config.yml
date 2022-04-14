@@ -32,7 +32,7 @@ github:
   username: vicenteherrera             # change to your github username
 
 twitter:
-  username: vicen_herrera            # change to your twitter username
+  username: v1z3n            # change to your twitter username
 
 social:
   # Change to your full name.
@@ -41,7 +41,7 @@ social:
   email: vicenteherrera@vicenteherrera.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/vicen_herrera      # change to your twitter homepage
+    - https://twitter.com/v1z3n      # change to your twitter homepage
     - https://github.com/vicenteherrera       # change to your github homepage
     - https://www.linkedin.com/in/vicenteherrera
     # Uncomment below to add more social links
