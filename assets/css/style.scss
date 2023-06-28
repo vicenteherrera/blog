@@ -110,9 +110,9 @@ b, strong {
   background-image: url(/blog/v.png);
   background-size: 80px 80px;
   background-repeat: no-repeat;
-  background-position: center left;
-  padding-left: 90px;
-  min-height: 80px;
+  background-position: 10px center;
+  padding-left: 100px;
+  min-height: 100px;
 }
 
 @mixin alerts-dark {
