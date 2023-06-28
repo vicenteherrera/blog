@@ -173,7 +173,7 @@ CVSS metrics is a complex topic that [requires further study](https://en.wikiped
 
 ## Two kinds of vulnerabilities
 
-Me and other experts say that [there is only two kinds of vulnerabilities](https://vaceituno.medium.com/only-two-classes-of-vulnerabilities-exist-not-three-233d1af89aac){:target="_blank"}: those that you are going to fix, and those that you are not.
+Other experts (and me) say that [there are only two kinds of vulnerabilities](https://vaceituno.medium.com/only-two-classes-of-vulnerabilities-exist-not-three-233d1af89aac){:target="_blank"}: those that you are going to fix, and those that you are not.
 {:.alert.alert-success.vicente-opinion}
 
 A vulnerability scanner may show you in a container or host a plethora of found vulnerabilities on operating system or software packages. You usually should focus on:
