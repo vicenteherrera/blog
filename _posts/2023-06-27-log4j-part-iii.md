@@ -79,7 +79,7 @@ No, no... that is not all. This is enough for vulnerabilities in containers, but
 
 ## Thanks
 
-Thanks to [Flaquivurus](https://flikr.com/flaquivirus) for the cover photo.
+Thanks to [Flaquivurus](https://www.flickr.com/photos/flaquivurus) for the cover photo.
 
 ## Conclusion
 
