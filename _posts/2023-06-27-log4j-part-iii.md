@@ -4,7 +4,7 @@ title:  "Log4j 2 vulnerabilities, part III: Prevention, mitigation and fixing"
 tags: [CVE, Log4j, vulnerability, remote code execution, CVE-2021-44228, log4shell, cybersecurity, RCE, container image scanning, runtime security, mitigation, cloud, Kubernetes]
 category: Security
 excerpt_separator: <!--more-->
-date: 2023-06-08 22:45:00 +01
+date: 2023-06-27 22:45:00 +01
 image:
   src: /blog/images/featured/closed_windows.jpg
   width: 1024   # in pixels
@@ -30,35 +30,49 @@ Big questions then are:
 * How could this be prevented or mitigated?
 * How should you proceed once a situation like this is detected?
 
-### Prevention and mitigation
+### 1. Prevention and mitigation
 
-A _zero-day_ like this vulnerability was, by definition, can't be detected in advance. So it's impossible to know it's there.
+A _zero-day_ like this vulnerability was, by definition, can't be detected in advance. So it's impossible to know it's there. 
 
-But there are things that can be done:
+But there are things that can be done to detect their behavior and contain their reach, like:
 
-* Even if you don't know about a vulnerability, you can use _runtime detection_ to examine behavior of compute elements looking for suspicious activity. A tool like open source _Falco_ for hosts, containers or Kubernetes has an extensive set of curated rules that would detect undesirable activity once someone is exploiting a zero-day, like running an interactive shell, searching for passwords or certificates, exfiltrating them, or trying to break security boundaries.
+* Runtime detection
+* Network segmentation
 
-* If compute components (microservices, pods, servers) were network isolated, when one was compromised it would be impossible to contact back to the source hacker. This showed not to be implemented in all compromised resources that got a connection back. For Kubernetes, you can use _Kubernetes Network Policies_ for that.
+#### Runtime detection
 
-### Detection and fix
+Even if you don't know about a vulnerability, you can use _runtime detection_ to examine behavior of compute elements looking for suspicious activity. A tool like open source [Falco](https://github.com/falcosecurity/falco) for hosts, containers or Kubernetes has an extensive set of curated rules that would detect undesirable activity once someone is exploiting a zero-day, like running an interactive shell, searching for passwords or certificates, exfiltrating them, or trying to break security boundaries.
+
+#### Network segmentation
+
+If compute components (microservices, pods, servers) were network isolated, when one was compromised it would be impossible to contact back to the source hacker. This showed not to be implemented in all compromised resources that got a connection back. For Kubernetes, you can use [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) for that. Depending on the Container Network Interface (CNI) of the dataplane your Kubernetes cluster uses, you may need to activate network policies or do additional installations to have access to that feature, even replacing the CNI for [Calico](https://github.com/projectcalico/cni-plugin) or [Cilium](https://github.com/cilium/cilium), which have their own propietary more powerful network policies. Also depending how they are configured, cloud load balancers may mask the source ip of the network packets, so you may need to adjust that or use an additional cloud firewall to block known external malicious IP addresses.
+
+### 2. Detection and fix
 
 The only way to detect if you are using a vulnerable dependency in your projects is if that vulnerability is already known. [Mitre CVE](https://vicenteherrera.com/blog/what-is-a-cve/#cve-ids), and [Nist NVD](https://vicenteherrera.com/blog/what-is-a-cve/#nvd) databases publish known vulnerabilities in software with details about how important they are. But you shouldn't be reading every single day if the [NVD database](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) has new entries.
 
-* You can automate **container image scanning**, that will list all known dependencies on your containers, and match that list with the NVD or other vulnerability database, using tools like [Trivy](https://github.com/aquasecurity/trivy), [Grype](https://github.com/anchore/grype), [Snyk](https://snyk.io/product/container-vulnerability-management/), [Docker Scout](https://docs.docker.com/scout/), and many others. The first time you do this, you will be surprised to learn how many vulnerabilities are out there, so you better filter for the high or critical ones that have a known exploit. Remember the sooner you scan the better, developers when test-building images, on build pipelines so very vulnerable images are stopped, and when publishing to a container registry. But even after your container image has long been built, new vulnerabilities may be discovered. Then you want to continually scan existing container images on registries as well as on running hosts and clusters. Most scan solutions in this latter case rely on having an _SBOM (Software Bill of Materials)_, a list of all known software on the image, as the list shouldn't change, so they can continusly keep matching the SBOM list to updates of the vulnerability database to warn on newly discovered vulnerabilities.
+You can automate **container image scanning**, that will list all known dependencies on your containers, and match that list with the NVD or other vulnerability database, using tools like [Trivy](https://github.com/aquasecurity/trivy), [Grype](https://github.com/anchore/grype), [Snyk](https://snyk.io/product/container-vulnerability-management/), [Docker Scout](https://docs.docker.com/scout/), and many others. The first time you do this, you will be surprised to learn how many vulnerabilities are out there, so you better filter for the high or critical ones that have a known exploit. Remember the sooner you scan the better, developers when test-building images, on build pipelines so very vulnerable images are stopped, and when publishing to a container registry. But even after your container image has long been built, new vulnerabilities may be discovered. Then you want to continually scan existing container images on registries as well as on running hosts and clusters. Most scan solutions in this latter case rely on having an _SBOM (Software Bill of Materials)_, a list of all known software on the image, as the list shouldn't change, so they can continusly keep matching the SBOM list to updates of the vulnerability database to warn on newly discovered vulnerabilities.
 
-First time you are warned of an important vulnerability (high or critical with known exploit, for example), several things can happen.
+First time you are warned of an important vulnerability (high or critical with known exploit, for example), two things things can happen:
 
-* You are just using that dependency with the vulnerability **for the first time**. You should research if it has been recently discovered, and if you can use an alternate (older) version that is less vulnerable until the newer one gets fixed. If the package is in general in a very bad situation vulnerability wise on all versions, consider using a complete different dependency that can do the same job.
+* You are using the vulnerable dependency for the first time
+* You already were using the vulnerable dependency
 
-* You **already are using the vulnerable dependency**. Then other possible options arise.
+#### Using vulnerable dependency for the first time
 
-  * There is an **upgraded version** that is known to **fix the vulnerability** (it would be indicated in the vulnerability database). Then just rebuild the container image using this version, following all the test processes that you should have in place to make sure everything works as expected. In this process, you may want to also upgrade other dependencies, but be careful. If you change a lot of packages, you may also be introducing new vulnerabilities to consider, or your tests may show that your software no longer behaves the way it should. To be able to do this on a controlled manner, it's important to _version-fix_ the dependencies in your build process, so it's easier for you to choose what to upgrade, and maybe even to have your own copy of the original dependencies you use, in your own controller artifact registry (like Artifactory, GitHub Actions Artifacts, Google Artifact Registry, AWS Artifact Repository, Azure Artifact). It is also useful to separate the build process by creating or using a base container image that is reliable and you trust, and on a separate step additional layer(s) for the very specific software of that container, that way it's easier to keep the base consistent if you don't need to change its packages. Reproducibility is a very important concept for security and stability. Also automating rolling out new releases will reduce the time it takes you from detection to complete vulnerability removal of your production workloads.
+You are just using that dependency with the vulnerability **for the first time**. You should research if it has been recently discovered, and if you can use an alternate (older) version that is less vulnerable until the newer one gets fixed. If the package is in general in a very bad situation vulnerability wise on all versions, consider using a complete different dependency that can do the same job.
 
-  * There is **no upgrade version that fixes the vulnerability**, or the alternative is a different mayor (or minor) version that breaks some functionality. In this case, again you have two options.
+#### You already were using the vulnerable dependency
 
-    * You think you need to **remove the vulnerable dependency no matter how**. You should then replace it with a very different version, or even a different dependency that provides a similar set of features. This can be arduous and coding-intensive, where having good tests is essential. Also good planning in separating in-layer functionality instead of calling directly the dependency will help replace it. Balance is the key, you can't make everything abstract or code will be very convoluted even for simple things (I'm looking at you, enterprise Java).
+If you **already were using the vulnerable dependency**. Then other possible options arise.
 
-    * The vulnerability **doesn't look so serious**, or you think known **mitigations** may be put in place to prevent it from being "activated" or "reached". In this scenario, you have the advantage of the vulnerability already being known and researched. If it relies on some specific network connection or unfiltered input, you may add some network filter with specific blocking rules (like [Snort](https://www.snort.org/rule_docs/1-58744)) or a security web proxy (like [OWASP ZAP](https://owasp.org/www-project-zap/)). You may not need to write your own rules, but keep an eye on runtime behaviour and seeking updated rules if the vulnerability is further analyzed to be activated in new ways.
+* There is an **upgraded version** that is known to **fix the vulnerability** (it would be indicated in the vulnerability database). Then just rebuild the container image using this version, following all the test processes that you should have in place to make sure everything works as expected. In this process, you may want to also upgrade other dependencies, but be careful. If you change a lot of packages, you may also be introducing new vulnerabilities to consider, or your tests may show that your software no longer behaves the way it should. To be able to do this on a controlled manner, it's important to _version-fix_ the dependencies in your build process, so it's easier for you to choose what to upgrade, and maybe even to have your own copy of the original dependencies you use, in your own controller artifact registry (like [Artifactory](https://jfrog.com/community/open-source/), [GitHub Actions Artifacts](https://docs.github.com/en/rest/actions/artifacts?apiVersion=2022-11-28), [AWS Artifact Repository](https://aws.amazon.com/codeartifact/), [Azure Artifact](https://azure.microsoft.com/es-es/products/devops/artifacts)), [Google Artifact Registry](https://cloud.google.com/artifact-registry). It is also useful to separate the build process by creating or using a base container image that is reliable and you trust, and on a separate step additional layer(s) for the very specific software of that container, that way it's easier to keep the base consistent if you don't need to change its packages. **Reproducibility** is a very important concept for security and stability. Also automating rolling out new releases will reduce the time it takes you from detection to complete vulnerability removal of your production workloads.
+
+* There is **no upgrade version that fixes the vulnerability**, or the alternative is a different mayor (or minor) version that breaks some functionality. In this case, again you have two options.
+
+  * You think you need to **remove the vulnerable dependency no matter how**. You should then replace it with a very different version, or even a different dependency that provides a similar set of features. This can be arduous and coding-intensive, where having good tests is essential. Also good planning in separating in-layer functionality instead of calling directly the dependency will help replace it. Balance is the key, you can't make everything abstract or code will be very convoluted even for simple things (I'm looking at you, enterprise Java).
+
+  * The vulnerability **doesn't look so serious**, or you think known **mitigations** may be put in place to prevent it from being "activated" or "reached". In this scenario, you have the advantage of the vulnerability already being known and researched. If it relies on some specific network connection or unfiltered input, you may add some network filter with specific blocking rules (like [Snort](https://www.snort.org/rule_docs/1-58744)) or a security web proxy (like [OWASP ZAP](https://owasp.org/www-project-zap/)). You may not need to write your own rules, but keep an eye on runtime behaviour and seeking updated rules if the vulnerability is further analyzed to be activated in new ways.
   
 
 ### That's all folks
