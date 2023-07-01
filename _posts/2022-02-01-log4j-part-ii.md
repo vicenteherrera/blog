@@ -18,10 +18,10 @@ _Sorry, I couldn't resist using a photo of a masked man operating in the dark se
 
 In this second post about the Log4j&nbsp;2 vulnerabilities, I will describe **technical details** of the _remote code execution_, as well as present a **proof of concept** using **Kubernetes** that is very easy to deploy, safe to run in a test environment, and very useful to test security tools, fixes, and mitigations.
 
-To learn more about what is Log4j and JNDI, don't forget to visit also my other posts about the Log4j 2 vulnerabilities:
+To learn more about Log4j and vulnerabilities, don't forget to visit also my other posts:
 * [Part I: History]({% post_url 2021-12-17-log4j-part-i %}){:target="_blank"}
 * [Part II: Kubernetes POC]({% post_url 2022-02-01-log4j-part-ii %}) (this post)
-* Part III: Security, fixes, and mitigations (work in progress, stay tuned)
+* [Part III: Prevention, mitigation, and fixing]({% post_url 2023-06-27-log4j-part-iii %})
 
 ## How does the exploit work
 
