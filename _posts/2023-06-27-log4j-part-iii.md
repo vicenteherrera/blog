@@ -25,12 +25,19 @@ _So I've decided I will at least create an abstract theoretical post to close th
 
 Ok, so if you are here is because you are interested in the Log4j 2 vulnerability, at least from a historical standpoint, and as a way to apply "lessons learned" to your current process.
 
-Big questions then are:
+To learn more about Log4j and vulnerabilities, don't forget to visit also my other posts:
+* [Part I: History]({% post_url 2021-12-17-log4j-part-i %}){:target="_blank"}
+* [Part II: Kubernetes POC]({% post_url 2022-02-01-log4j-part-ii %})
+* [Part III: Prevention, mitigation, and fixing]({% post_url 2023-06-27-log4j-part-iii %}) (this post)
+
+Big questions that we will answer in this post are:
 
 * How could this be prevented or mitigated?
 * How should you proceed once a situation like this is detected?
 
-### 1. Prevention and mitigation
+I'll set up problems in a generic way, but focus on Kubernetes for specific examples.
+
+## 1. Prevention and mitigation
 
 A _zero-day_ like this vulnerability was, by definition, can't be detected in advance. So it's impossible to know it's there. 
 
@@ -38,31 +45,56 @@ But there are things that can be done to detect their behavior and contain their
 
 * Runtime detection
 * Network segmentation
+* Process containment
 
-#### Runtime detection
+### Runtime detection
 
 Even if you don't know about a vulnerability, you can use _runtime detection_ to examine behavior of compute elements looking for suspicious activity. A tool like open source [Falco](https://github.com/falcosecurity/falco) for hosts, containers or Kubernetes has an extensive set of curated rules that would detect undesirable activity once someone is exploiting a zero-day, like running an interactive shell, searching for passwords or certificates, exfiltrating them, or trying to break security boundaries.
 
-#### Network segmentation
+### Network segmentation
 
-If compute components (microservices, pods, servers) were network isolated, when one was compromised it would be impossible to contact back to the source hacker. This showed not to be implemented in all compromised resources that got a connection back. For Kubernetes, you can use [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) for that. Depending on the Container Network Interface (CNI) of the dataplane your Kubernetes cluster uses, you may need to activate network policies or do additional installations to have access to that feature, even replacing the CNI for [Calico](https://github.com/projectcalico/cni-plugin) or [Cilium](https://github.com/cilium/cilium), which have their own propietary more powerful network policies. Also depending how they are configured, cloud load balancers may mask the source ip of the network packets, so you may need to adjust that or use an additional cloud firewall to block known external malicious IP addresses.
+If compute components (microservices, pods, servers) were network isolated, when one was compromised it would be impossible to contact back to the source hacker. This showed not to be implemented in all compromised resources that got a connection back, as [the first post on this series demonstrated]({% post_url 2021-12-17-log4j-part-i %}). 
 
-### 2. Detection and fix
+For Kubernetes, you can use [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/) for easily setting how pods can talk to each other. 
 
-The only way to detect if you are using a vulnerable dependency in your projects is if that vulnerability is already known. [Mitre CVE](https://vicenteherrera.com/blog/what-is-a-cve/#cve-ids), and [Nist NVD](https://vicenteherrera.com/blog/what-is-a-cve/#nvd) databases publish known vulnerabilities in software with details about how important they are. But you shouldn't be reading every single day if the [NVD database](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) has new entries.
+Depending on the _Container Network Interface (CNI)_ of the dataplane your Kubernetes cluster uses, you may need to _activate_ network policies, or do additional installations, to have access to that feature; even replacing the CNI for [Calico](https://github.com/projectcalico/cni-plugin) or [Cilium](https://github.com/cilium/cilium), which have their own propietary more powerful network policies.
 
-You can automate **container image scanning**, that will list all known dependencies on your containers, and match that list with the NVD or other vulnerability database, using tools like [Trivy](https://github.com/aquasecurity/trivy), [Grype](https://github.com/anchore/grype), [Snyk](https://snyk.io/product/container-vulnerability-management/), [Docker Scout](https://docs.docker.com/scout/), and many others. The first time you do this, you will be surprised to learn how many vulnerabilities are out there, so you better filter for the high or critical ones that have a known exploit. Remember the sooner you scan the better, developers when test-building images, on build pipelines so very vulnerable images are stopped, and when publishing to a container registry. But even after your container image has long been built, new vulnerabilities may be discovered. Then you want to continually scan existing container images on registries as well as on running hosts and clusters. Most scan solutions in this latter case rely on having an _SBOM (Software Bill of Materials)_, a list of all known software on the image, as the list shouldn't change, so they can continusly keep matching the SBOM list to updates of the vulnerability database to warn on newly discovered vulnerabilities.
+_Kubernetes Network Policies_ work very well to manage pod traffic inside the cluster. But if you want to filter external traffic, when using load balancers the external source IP address of the connection may be masked. To avoid this, you can opt to loose perfect balancing vs preserving client ip by setting [externalTrafficPolicy to local](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). It's a good idea to use a cloud firewall when possible for rules that can apply in this case.
+
+### Process containment
+
+A computer CPU runs software in a process, many of them at the same time for paralellism. A service may run in a container, that is just a process with some isolation from other processes in the same host machine, and its own network layer.
+
+When running containers, if the vulnerable workload gets compromised, there is already some isolation from the host that is running it, may it be on a Kubernetes cluster, or other kind of orchestrator. But if the malicious agent knows a way to escape the confinements of the container via a vulnerability in the orchestrator, [which has happened in the past](https://nvd.nist.gov/vuln/detail/CVE-2022-0185), he could switch to run on the host virtual machine directly. There are also several privileged settings for pods that will enable the to run very privileged capabilities, that when it gets compromised, makes escaping the container and gaining root privileges on the host machine extremely easy. From there, the malicious agent will be able to do a lot of harm.
+
+To prevent pods in a Kubernetes cluster having insecure settings you can use [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/), where you can set a namespace at three different levels:
+
+* _Privileged:_ anything is allowed
+* _Baseline:_ any setting that will make compromise the host automatic are prevented, like _privileged containers_ or _host network_.
+* _Restricted:_ containers needs to run as non root, drop almost all Linux capabilities, and specify a seccomp profile that filters system calls.
+
+Don't worry if at first you don't understand the implications of all these. You can start with setting _baseline_, as it will require mostly you doing nothing to your pod specs, otherwise you'll know they are already insecure.
+
+An important thing you can do to improve your container's security is make sure **they do not run as root user**. You can specify in the _Dockerfile_ with _USER_ a different user, or at least make sure that they are compatible with running the as non root. Then on the pod spec, use _runAsUser_ to specify a userId. Then, in case the container is compromise and its isolation breached, will make the malicious actor still being executing things without root privileges, so what they can do will on the host machine will be limited.
+
+## 2. Detection and fix
+
+The only way to detect if you are using a vulnerable dependency in your projects is if that vulnerability is already known. [Mitre CVE](https://vicenteherrera.com/blog/what-is-a-cve/#cve-ids), and [Nist NVD](https://vicenteherrera.com/blog/what-is-a-cve/#nvd) databases, as well as others, publish known vulnerabilities in software with details about how important they are. But you shouldn't be manually reading every single day if the [NVD database](https://nvd.nist.gov/vuln/detail/CVE-2021-44228) has new entries.
+
+You can do **container image scanning**, list all known dependencies on your containers, and match that list with the NVD or other vulnerability database. Some open source scanners for command line are [Trivy](https://github.com/aquasecurity/trivy), [Grype](https://github.com/anchore/grype), [Snyk](https://snyk.io/product/container-vulnerability-management/), [Docker Scout](https://docs.docker.com/scout/). The first time you do this, you will be surprised to learn how many vulnerabilities are out there, so you better filter for the high or critical ones that have a known exploit. 
+
+Remember the sooner you scan the better, developers when test-building images, on build pipelines so very vulnerable images are stopped, and when publishing to a container registry. But even after your container image has long been built, new vulnerabilities may be discovered. Then you want to continually scan existing container images on registries as well as on running hosts and clusters. Most scan solutions in this latter case rely on having an _SBOM (Software Bill of Materials)_, a list of all known software on the image, as the list shouldn't change, so they can continusly keep matching the SBOM list to updates of the vulnerability database to warn on newly discovered vulnerabilities. You shouldn't have to bother how _SBOMs_ work at all, an enterprise solution like [Sysdig](https://sysdig.com/), [Aqua](https://www.aquasec.com/), [Prisma](https://www.paloaltonetworks.com/prisma/cloud), [Lacework](https://www.lacework.com/), or [Snyk](https://snyk.io/) should take care of that. You just have to set up scanning at every step, stablish acceptance criteria, and centralize reporting of findings.
 
 First time you are warned of an important vulnerability (high or critical with known exploit, for example), two things things can happen:
 
-* You are using the vulnerable dependency for the first time
-* You already were using the vulnerable dependency
+* You are using the vulnerable dependency **for the first time**
+* You **already** were using the vulnerable dependency
 
-#### Using vulnerable dependency for the first time
+### Using vulnerable dependency for the first time
 
 You are just using that dependency with the vulnerability **for the first time**. You should research if it has been recently discovered, and if you can use an alternate (older) version that is less vulnerable until the newer one gets fixed. If the package is in general in a very bad situation vulnerability wise on all versions, consider using a complete different dependency that can do the same job.
 
-#### You already were using the vulnerable dependency
+### You already were using the vulnerable dependency
 
 If you **already were using the vulnerable dependency**. Then other possible options arise.
 
@@ -75,7 +107,7 @@ If you **already were using the vulnerable dependency**. Then other possible opt
   * The vulnerability **doesn't look so serious**, or you think known **mitigations** may be put in place to prevent it from being "activated" or "reached". In this scenario, you have the advantage of the vulnerability already being known and researched. If it relies on some specific network connection or unfiltered input, you may add some network filter with specific blocking rules (like [Snort](https://www.snort.org/rule_docs/1-58744)) or a security web proxy (like [OWASP ZAP](https://owasp.org/www-project-zap/)). You may not need to write your own rules, but keep an eye on runtime behaviour and seeking updated rules if the vulnerability is further analyzed to be activated in new ways.
   
 
-### That's all folks
+## 3. That's all folks
 
 No, no... that is not all. This is enough for vulnerabilities in containers, but there are still general recommendations to follow:
 
