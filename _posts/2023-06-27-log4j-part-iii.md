@@ -43,9 +43,18 @@ A _zero-day_ like this vulnerability was, by definition, can't be detected in ad
 
 But there are things that can be done to detect their behavior and contain their reach, like:
 
+* Less and better dependencies
 * Runtime detection
 * Network segmentation
 * Process containment
+
+### Less and better dependencies
+
+Although we will speak about a lot of security concernts, the focus in this post is vulnerabilities. They can live in your software, on libraries and external dependencies you use, and you may not know it. One way of reducing risk is... running less software!
+
+Specifically for container images, you should wisely choose your base images so they have the least packages possible, and those that have to be there to really be very carefully chosen. A good starting point is using [distroless container images](https://github.com/GoogleContainerTools/distroless) and statically linking your software.
+
+Also quality of your dependencies is important, you should choose carefully which dependencies written by other people you execute alongside your software. Make sure they come from reputable sources, open source projects with many maintainers that regulary release new versions and fixes issues. That will reduce the amount of vulnerability they have, and the time for a new one to be addressed.
 
 ### Runtime detection
 
