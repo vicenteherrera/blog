@@ -11,7 +11,7 @@ image:
   height: 616   # in pixels
   alt: A building with all window shutters closed
 pin: false
-description: "How to prevent, mitigate and fix a vulnerability."
+description: "How to prepare before you are impacted by a vulnerability to minimize its possible reach, and how to properly fix things afterwards."
 ---
 
 Wow, more than a year without writing anything more, and even leaving a three-part blog post unfinished... So what happened?
