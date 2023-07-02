@@ -30,7 +30,7 @@ To learn more about Log4j and vulnerabilities, don't forget to visit also my oth
 * [Part II: Kubernetes POC]({% post_url 2022-02-01-log4j-part-ii %})
 * [Part III: Prevention, mitigation, and fixing]({% post_url 2023-06-27-log4j-part-iii %}) (this post)
 
-Big questions that we will answer in this post are:
+The two big questions that I will answer in this post are:
 
 * How could this be prevented or mitigated?
 * How should you proceed once a situation like this is detected?
@@ -52,7 +52,7 @@ But there are things that can be done to detect their behavior and contain their
 
 Although we will speak about a lot of security concernts, the focus in this post is vulnerabilities. They can live in your software, on libraries and external dependencies you use, and you may not know it. One way of reducing risk is... running less software!
 
-Specifically for container images, you should wisely choose your base images so they have the least packages possible, and those that have to be there to really be very carefully chosen. A good starting point is using [distroless container images](https://github.com/GoogleContainerTools/distroless) and statically linking your software.
+Specifically for container images, you should wisely choose your base images so they have the least packages possible, and those that have to be there to really be very carefully chosen. A good starting point is using [distroless container images](https://github.com/GoogleContainerTools/distroless) and statically linking your software. It that is not possible, consider not all base images are the same. Try to start with a small Alpine or Debian-slim. If you don't want to craft all dependencies insite the image yourself, consider the ones from [Bitnami](https://bitnami.com/stacks/containers) are sometimes better (less unnecesary dependencies and vulnerabilities) than the official images from open source projects. Other professional services like [Chainguard](https://www.chainguard.dev/chainguard-images) have an enticing promise for zero vulnerabilities in their images that is worth putting to the test.
 
 Also quality of your dependencies is important, you should choose carefully which dependencies written by other people you execute alongside your software. Make sure they come from reputable sources, open source projects with many maintainers that regulary release new versions and fixes issues. That will reduce the amount of vulnerability they have, and the time for a new one to be addressed.
 
@@ -114,23 +114,22 @@ If you **already were using the vulnerable dependency**. Then other possible opt
   * You think you need to **remove the vulnerable dependency no matter how**. You should then replace it with a very different version, or even a different dependency that provides a similar set of features. This can be arduous and coding-intensive, where having good tests is essential. Also good planning in separating in-layer functionality instead of calling directly the dependency will help replace it. Balance is the key, you can't make everything abstract or code will be very convoluted even for simple things (I'm looking at you, enterprise Java).
 
   * The vulnerability **doesn't look so serious**, or you think known **mitigations** may be put in place to prevent it from being "activated" or "reached". In this scenario, you have the advantage of the vulnerability already being known and researched. If it relies on some specific network connection or unfiltered input, you may add some network filter with specific blocking rules (like [Snort](https://www.snort.org/rule_docs/1-58744)) or a security web proxy (like [OWASP ZAP](https://owasp.org/www-project-zap/)). You may not need to write your own rules, but keep an eye on runtime behaviour and seeking updated rules if the vulnerability is further analyzed to be activated in new ways.
-  
 
 ## 3. That's all folks
 
 No, no... that is not all. This is enough for vulnerabilities in containers, but there are still general recommendations to follow:
 
-* Update your container images with new dependencies regularly, that way you skip entirely being affected by a vulnerability in many cases.
-
-* Your own coded software may have insecure code practices. Ensure a good architecture and use some code quality analysis tools like [SonarQube](https://docs.sonarqube.org/latest/).
+* Your own coded software may have insecure code practices. Ensure you define a good architecture and use some code quality analysis tools like [SonarQube](https://docs.sonarqube.org/latest/).
 
 * Misconfiguration in your infrastructure is the number one reason for breaches. Check your IaC (Infrastructure as Code) with tools like [Checkov](https://www.checkov.io/) for possible vulnerabilities.
 
+* Update your container images with new dependencies regularly, that way you skip entirely being affected by a vulnerability in many cases. It's easier if you automate your software build and deployment, for which there are many open source tools like [ArgoCD](https://github.com/argoproj/argo-cd) or [Tekton](https://github.com/tektoncd). You should also set up a blue/green deployment strategy, including implementing good liveness and health checks on your pods.
+
 * Check best practices for your cloud provider. Remember misconfiguration on infrastructure or cloud usage is not in the scope of vulnerability databases, it's completely on you. You can download [Center for Internet Security (CIS) Benchmarks](https://www.cisecurity.org/benchmark/amazon_web_services) with security recommendations for AWS, GCP, Azure, Kubernetes, Openshift, and many other platforms, and use automated tools for checking like [Kubebench](https://github.com/aquasecurity/kube-bench), or [Prowler](https://github.com/prowler-cloud/prowler).
 
-* Managing **Identity and Access Management (IAM)** on cloud providers, and **Kubernetes RBAC**, the right way, is important and would deserve its own blog post.
+* Managing **Identity and Access Management (IAM)** on cloud providers, and **Kubernetes RBAC**, the right way, is important and would deserve its own blog post. When you are in the cloud, usually there is a way to link cloud IAM RBAC to Kubernetes RBAC. Also if you don't need it, revoke access from pods to the cloud metadata endpoint and giving IAM identity to pods.
 
-* Managing **secrets and certificates**, who creates them, how to deliver them to your workloads in a secure way, how to revoke and rotate tokens, etc, would also deserve its own blog post.
+* Managing **secrets and certificates**, who creates them, how to deliver them to your workloads in a secure way, how to revoke and rotate tokens, etc, would also deserve its own blog post. Kubernetes secrets has been critized by initial lack of strong security like not keeping them in memory instead of disk, not using encryption at rest, or loading them only to nodes that didn't needed them, and [poor document explanation of how they are secure](https://www.redhat.com/sysadmin/managing-secrets-kubernetes-pods). Those days are over, but Kubernetes secrets is just a delivery mechanism, you still have a source to store, manage, deliver them to your cluster, update and revoke secrets and certificates. There is where open source tools like [Vault](https://github.com/hashicorp/vault) or [Cert Manager](https://github.com/cert-manager/cert-manager) can help you.
 
 ## Thanks
 
