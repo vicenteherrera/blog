@@ -86,7 +86,7 @@ Don't worry if at first you don't understand the implications of all these. You 
 
 If you need a more fine tuned permissions system that is not just those three levels, or enforce additional restrictions not included in them, you can install your own _admission controller_ like [Gatekeeper](https://github.com/open-policy-agent/gatekeeper) or [Kyberno](https://github.com/kyverno/kyverno/), and write your own policies for them using OPA for the first or plain _YAML_ for the second.
 
-An important thing you can do to improve your container's security is make sure **they do not run as root user**. You can specify in the _Dockerfile_ with _USER_ a different user, or at least make sure that they are compatible with running the as non root. Then on the pod spec, use _runAsUser_ to specify a userId. Then, in case the container is compromise and its isolation breached, will make the malicious actor still being executing things without root privileges, so what they can do will on the host machine will be limited.
+An important thing you can do to improve your container's security is **make sure they do not run as root user**. You can specify in the _Dockerfile_ with _USER_ a different user, or at least make sure that they are compatible with running the as non root. Then on the pod spec, use _runAsUser_ to specify a userId. Then, in case the container is compromise and its isolation breached, will make the malicious actor still being executing things without root privileges, so what they can do will on the host machine will be limited.
 
 ## 2. Detection and fix
 
@@ -117,7 +117,7 @@ If you **already were using the vulnerable dependency**. Then other possible opt
 
   * The vulnerability **doesn't look so serious**, or you think known **mitigations** may be put in place to prevent it from being "activated" or "reached". In this scenario, you have the advantage of the vulnerability already being known and researched. If it relies on some specific network connection or unfiltered input, you may add some network filter with specific blocking rules (like [Snort](https://www.snort.org/rule_docs/1-58744)) or a security web proxy (like [OWASP ZAP](https://owasp.org/www-project-zap/)). You may not need to write your own rules, but keep an eye on runtime behaviour and seeking updated rules if the vulnerability is further analyzed to be activated in new ways.
 
-## 3. That's all folks
+## 3. That's (not) all folks
 
 No, no... that is not all. This is enough for vulnerabilities in containers, but there are still general recommendations to follow:
 
