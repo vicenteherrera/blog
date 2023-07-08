@@ -43,16 +43,22 @@ A _zero-day_ like this vulnerability, by definition, can't be detected in advanc
 
 But there are things that can be done to detect their behavior and contain their reach, like:
 
+* Avoid cluster misconfiguration
 * Less and better dependencies
 * Runtime detection
 * Network segmentation
+* Encrypting network traffic
 * Process containment
+
+### Avoid cluster misconfiguration
+
+On Kubernetes, everything starts on how you have deployed your cluster. The [Center for Internet Security (CIS)](https://www.cisecurity.org/benchmark/kubernetes) publishes a series of _benchmarks_ on different software, including Kubernetes and OpenShift, to give you guidelines on settings to enforce or avoid on your cluster configuration to prevent insecure situations. You can automate testing some of them (but not all) with open source tool [Kube-bench](https://github.com/aquasecurity/kube-bench).
 
 ### Less and better dependencies
 
 Although we will speak about a lot of security concerns, the focus in this post is vulnerabilities. They can live in your software, on libraries and external dependencies you use, and you may not know it. One way of reducing risk is... running less software!
 
-Specifically for container images, you should wisely choose your base images so they have the least packages possible, and those that have to be there to really be very carefully chosen. A good starting point is using [distroless container images](https://github.com/GoogleContainerTools/distroless) and statically linking your software. It that is not possible, consider not all base images are the same. Try to start with a small Alpine or Debian-slim. If you don't want to craft all dependencies inside the image yourself, consider the ones from [Bitnami](https://bitnami.com/stacks/containers) are sometimes better (less unnecessary dependencies and vulnerabilities) than the official images from open source projects. Other alternatives like [Chainguard](https://github.com/chainguard-images/images) have an enticing promise of zero vulnerabilities in their images that is worth putting to the test.
+Specifically for container images, you should wisely choose your base images so they have the least packages possible, and those that have to be there to really be very carefully chosen. A good starting point is using [distroless container images](https://github.com/GoogleContainerTools/distroless) and statically compiling your software. If that is not possible, consider not all base images are the same. Try to start with a small Alpine or Debian-slim. If you don't want to craft all dependencies inside the image yourself, consider the ones from [Bitnami](https://bitnami.com/stacks/containers) are sometimes better (less unnecessary dependencies and vulnerabilities) than the official images from open source projects. Other alternatives like [Chainguard](https://github.com/chainguard-images/images) have an enticing promise of zero vulnerabilities in their images that is worth putting to the test.
 
 Also the quality of your dependencies is important, you should choose carefully which dependencies written by other people you execute alongside your software. Make sure they come from reputable sources, open source projects with many maintainers that regularly release new versions and fix issues. That will reduce the amount of vulnerability they have, and the time for a new one to be addressed.
 
@@ -70,7 +76,13 @@ Depending on the _Container Network Interface (CNI)_ of the dataplane your Kuber
 
 _Kubernetes Network Policies_ work very well to manage pod traffic inside the cluster on regular pods. But if you want to filter external traffic, when using load balancers the external source IP address of the connection may be masked. To avoid this, you can opt to lose perfect balancing vs preserving client ip by setting [externalTrafficPolicy to local](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip). It's a good idea to use a cloud firewall when possible for rules that can apply in this case.
 
+### Encrypting network traffic
+
+Traffic encryption will prevent that any middle man in your infrastructure can listen to your communications, may it be your cloud provider, your own software, or a malicious actor that has found a vulnerability in one of your systems and wants to gather information on different ones.
+
 A _service mesh_ is an interesting addition that brings your cluster network better observability, better load balancing, and automated mTLS authentication and encryption. But it's not enough for network segmentation: if it's based on sidecars like Istio it will only proxy L7 traffic, not blocking direct ip:port communications, and the proxy can be bypassed if the pod has enough privileges; and if it's eBPF based, which can route L3 traffic, it completely lacks any network segmentation features, leaving that control to its underlying eBPF CNI and the previously discussed network policies.
+
+If you don't want the overhead resource cost of a service mesh, and you want end-to-end encryption (from client to pod), research how your load balancers can do SSL pasthrough to make that possible. On AWS, (Application Load Balancer (ALB)](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) can't do SSL passthrough. You could use [Network Load Balancer (NLB)](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html) in tcp mode, but if you use [AWS Load Balancer controller](https://kubernetes-sigs.github.io/aws-load-balancer-controller/), you will need an NLB per service, which is costly, and will exhaust available VPC ip addresses. You could provision NLB using Terraform or CloudFormation and use different ports to different services, or create a single NLB and [Nginx ingress controller](https://docs.nginx.com/nginx-ingress-controller/intro/overview/).
 
 ### Process containment
 
