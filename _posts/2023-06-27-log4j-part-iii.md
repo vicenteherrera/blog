@@ -176,6 +176,8 @@ No, no... that is not all. This is enough for vulnerabilities in containers, but
 
 * For specific files, you can query APIs to know if they have been tampered with _extra_ malicious code, like [VirusTotal API](https://developers.virustotal.com/reference/overview) or [CIRCL hashlookup](https://www.circl.lu/services/hashlookup/). Don't blindly trust vulnerability databases, even for things that are reported on NVD, [there are important claims of innacuracy](https://daniel.haxx.se/blog/2023/06/12/nvd-damage-continued/), and if you are trying to report a CVE for a software vendor that is a _Certified Numbering Authority_ (they can assign CVE ids), like for example Microsoft is, [they may argue or ignore you preventing the report to move forward](https://www.pluginvulnerabilities.com/2023/01/09/cves-process-for-disputing-a-claimed-vulnerability-is-currently-broken/.
 
+* If you want a thicker isolating layer for your containers, you can try to run them using [gvisor](https://gvisor.dev/) as an extra layer between them and the kernel, but beware not all containers are compatible with it, as it will only allow a subset of system calls. Another isolating mechanism you can try is [kata containers](https://katacontainers.io/), that will execute each one on its own virtual machine, but with an important performance hit. Lastly, if you want paramount isolation where not even the orchestrator or a cloud provider can know what is running in your cluster, look for [confidential containers](https://github.com/confidential-containers).
+
 ## Thanks
 
 Thanks to [Flaquivurus](https://www.flickr.com/photos/flaquivurus) for the cover photo.
